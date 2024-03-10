@@ -6,6 +6,10 @@ return {
         "nvim-tree/nvim-web-devicons",
     },
     config = function()
-        require("nvim-tree").setup {}
-    end,
+        require("nvim-tree").setup {
+            filters = {
+                custom = { "^.git$" }
+            }
+        }
+    end
 }

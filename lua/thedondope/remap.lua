@@ -86,7 +86,7 @@ vim.keymap.set("x", "<leader>p", [["_dP]])
 -- clipboard integration, facilitating a smoother workflow between Neovim and
 -- other applications.
 -- next greatest remap ever : asbjornHaland
-vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
+vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 vim.keymap.set("n", "<leader>Y", [["+Y]])
 
 -- Pressing <leader>d in normal mode will delete the current line without
@@ -95,7 +95,7 @@ vim.keymap.set("n", "<leader>Y", [["+Y]])
 -- is particularly useful for deleting text that you know you won't need to
 -- paste elsewhere, keeping your registers clean for more important yanks and
 -- deletes.
-vim.keymap.set({"n", "v"}, "<leader>d", [["_d]])
+vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
 -- This is going to get me cancelled
 vim.keymap.set("i", "<C-c>", "<Esc>")
