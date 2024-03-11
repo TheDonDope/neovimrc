@@ -1,5 +1,5 @@
 vim.g.mapleader = " "
-vim.keymap.set('n', '<leader>pv', ':NvimTreeFocus<CR>')
+vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)
 
 -- You may have stolen the following, but you will NOT use it, before you
 -- understand what it does!

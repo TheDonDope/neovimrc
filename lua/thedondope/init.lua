@@ -2,11 +2,6 @@ require("thedondope.set")
 require("thedondope.remap")
 
 require("thedondope.lazy_init")
-
--- Required by nvim-tree: disable netrw at the very start of your init.lua
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
 -- DO.not
 -- DO NOT INCLUDE THIS
 
@@ -69,6 +64,6 @@ autocmd('LspAttach', {
 })
 
 -- You can uncomment the following lines if you do not use nvim-tree and instead use netrw
--- vim.g.netrw_browse_split = 0
--- vim.g.netrw_banner = 0
--- vim.g.netrw_winsize = 25
+vim.g.netrw_browse_split = 0
+vim.g.netrw_banner = 0
+vim.g.netrw_winsize = 25
