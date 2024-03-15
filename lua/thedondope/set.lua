@@ -29,3 +29,6 @@ vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = "80"
+
+-- To enable obsidian plugin markdown rendering features
+vim.opt.conceallevel = 1
