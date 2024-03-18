@@ -21,6 +21,7 @@ return {
             {
                 name = "second-brain",
                 path = "~/Library/Mobile Documents/iCloud~md~obsidian/Documents/second-brain",
+                -- path = "/mnt/c/Users/idont/iCloudDrive/iCloud~md~obsidian/second-brain",
                 overrides = {
                     notes_subdir = "00-zettelkasten",
                     daily_notes = {
