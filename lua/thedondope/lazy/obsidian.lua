@@ -25,7 +25,7 @@ return {
                 overrides = {
                     notes_subdir = "00-zettelkasten",
                     daily_notes = {
-                        folder = "periodic-notes/dailies",
+                        folder = "periodic-notes/daily-notes",
                     },
                 },
             },
