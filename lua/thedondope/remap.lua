@@ -1,5 +1,5 @@
 vim.g.mapleader = " "
-vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)
+vim.keymap.set('n', '<leader>pv', vim.cmd.Ex, { desc = "Open file explorer (netrw)" })
 
 -- You may have stolen the following, but you will NOT use it, before you
 -- understand what it does!
@@ -11,13 +11,13 @@ vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)
 -- This is particularly useful for quickly reorganizing lines or blocks of code
 -- without losing your place or having to manually re-indent and re-select the
 -- text.
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selected lines down and reindent" })
 
 -- This remap allows you to quickly move a block of selected text up by one
 -- line in visual mode, while also maintaining proper indentation and keeping
 -- the text selected. It enhances editing efficiency, particularly when
 -- reorganizing code blocks or paragraphs of text.
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move selected lines up and reindent" })
 
 -- This remap allows you to join the current line with the next one using the J
 -- command in normal mode, but instead of leaving the cursor at the end of the
@@ -25,21 +25,21 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 -- original position before the lines were joined. This is particularly useful
 -- for maintaining your place in a document when editing, as it prevents you
 -- from having to manually navigate back to where you were after joining lines.
-vim.keymap.set("n", "J", "mzJ`z")
+vim.keymap.set("n", "J", "mzJ`z", { desc = "Join lines without moving cursor" })
 
 -- The remap ensures that after you scroll down half a screen, the line with
 -- the cursor is brought to the center of the screen. This can make it easier
 -- to keep track of where you are in the file, especially when navigating
 -- through long documents, by keeping your current position more centrally
 -- located in the viewport.
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
+vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Scroll half-page down and center cursor" })
 
 -- The remap ensures that after you scroll up half a screen, the line with
 -- the cursor is brought to the center of the screen. This can make it easier
 -- to keep track of where you are in the file, especially when navigating
 -- through long documents, by keeping your current position more centrally
 -- located in the viewport.
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Scroll half-page down and center cursor" })
 
 -- This remap enhances the usability of the n command for navigating search
 -- results in normal mode. It ensures that when you jump to the next occurrence
@@ -47,7 +47,7 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 -- and any folds concealing it are opened, making it easier to immediately see
 -- and assess the context of your matches without manually adjusting your view
 -- or dealing with folds.
-vim.keymap.set("n", "n", "nzzzv")
+vim.keymap.set("n", "n", "nzzzv", { desc = "Repeat search forward and center cursor" })
 
 -- This remap enhances the usability of the N command for navigating search
 -- results in normal mode. It ensures that when you jump to the previous
@@ -55,11 +55,11 @@ vim.keymap.set("n", "n", "nzzzv")
 -- screen, and any folds concealing it are opened, making it easier to
 -- immediately see and assess the context of your matches without manually
 -- adjusting your view or dealing with folds.
-vim.keymap.set("n", "N", "Nzzzv")
+vim.keymap.set("n", "N", "Nzzzv", { desc = "Repeat search backward and center cursor" })
 
-vim.keymap.set("n", "=ap", "ma=ap'a")
+vim.keymap.set("n", "=ap", "ma=ap'a", { desc = "Reindent paragraph and restore cursor position" })
 
-vim.keymap.set("n", "<leader>zig", "<cmd>LspRestart<cr>")
+vim.keymap.set("n", "<leader>zig", "<cmd>LspRestart<cr>", { desc = "Restart LSP Servers" })
 
 -- vim.keymap.set("n", "<leader>vwm", function()
 --      require("vim-with-me").StartVimWithMe()
@@ -78,7 +78,7 @@ vim.keymap.set("n", "<leader>zig", "<cmd>LspRestart<cr>")
 -- you're about to replace doesn't overwrite what you have in your clipboard,
 -- making repeated paste operations more convenient and predictable.
 -- greatest remap ever
-vim.keymap.set("x", "<leader>p", [["_dP]])
+vim.keymap.set("x", "<leader>p", [["_dP]], { desc = "Paste without overwriting register" })
 
 -- Pressing <leader>y in normal mode will copy the current line or the current
 -- selection in visual mode to the system clipboard. This remap makes it easy
@@ -90,8 +90,8 @@ vim.keymap.set("x", "<leader>p", [["_dP]])
 -- clipboard integration, facilitating a smoother workflow between Neovim and
 -- other applications.
 -- next greatest remap ever : asbjornHaland
-vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
-vim.keymap.set("n", "<leader>Y", [["+Y]])
+vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "Yank to system clipboard" })
+vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "Yank to end of line to system clipboard" })
 
 -- Pressing <leader>d in normal mode will delete the current line without
 -- copying it to any register you might later accidentally paste from. In
@@ -99,7 +99,7 @@ vim.keymap.set("n", "<leader>Y", [["+Y]])
 -- is particularly useful for deleting text that you know you won't need to
 -- paste elsewhere, keeping your registers clean for more important yanks and
 -- deletes.
-vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
+vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]], { desc = "Delete without yanking" })
 
 -- This is going to get me cancelled
 vim.keymap.set("i", "<C-c>", "<Esc>")
@@ -125,15 +125,16 @@ vim.keymap.set("n", "Q", "<nop>")
 -- Neovim's powerful LSP integration, which provides IDE-like functionalities
 -- such as diagnostics, code completion, and, as shown here, document
 -- formatting.
-vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
+vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, { desc = "Format buffer with LSP" })
 
 -- The practical effect of this remap is to improve navigation efficiency
 -- within the quickfix list, making it easier to cycle through items like
 -- compile errors or search results, with the added convenience of centering
 -- the screen on each item for better visibility. This can significantly speed
 -- up tasks such as debugging or reviewing search matches across a project.
-vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
-vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
+-- Disabled due to conflicting keybinds with vim-tmux-navigator
+-- vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz", { desc = "Next quickfix item and center screen" })
+-- vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz", { desc = "Previous quickfix item and center screen" })
 
 -- The practical effect of this remap is to facilitate efficient navigation
 -- through the items (such as errors, warnings, or search results) in the
@@ -142,45 +143,49 @@ vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
 -- can be especially useful for workflows involving code review or debugging,
 -- where you need to quickly and systematically address multiple issues within
 -- a single file or closely related set of files.
-vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
-vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
+vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz", { desc = "Next location list item and center screen" })
+vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz", { desc = "Previous location list item and center screen" })
 
 -- This remap is particularly useful for quickly setting up a template for
 -- global, case-insensitive replacement of the word under the cursor throughout
 -- the entire file. After triggering the command, you'll be left in command-line
 -- mode with the cursor positioned to easily edit the replacement text,
 -- streamlining the process of performing such replacements.
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Search and replace word under cursor" })
 
 -- Pressing <leader>x in normal mode will make the current file executable
 -- without leaving Neovim or opening a terminal window. This can be particularly
 -- useful for scripts or other executable files that you're working on directly
 -- in Neovim.
-vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { desc = "Add executable permission to file", silent = true })
 
 -- A quick golang template to insert an error check
 vim.keymap.set(
     "n",
     "<leader>ee",
-    "oif err != nil {<CR>}<Esc>Oreturn err<Esc>"
+    "oif err != nil {<CR>}<Esc>Oreturn err<Esc>",
+    { desc = "Insert Go error handling block" }
 )
 
 vim.keymap.set(
     "n",
     "<leader>ea",
-    "oassert.NoError(err, \"\")<Esc>F\";a"
+    "oassert.NoError(err, \"\")<Esc>F\";a",
+    { desc = "Insert Go test assertion assert.NoError" }
 )
 
 vim.keymap.set(
     "n",
     "<leader>ef",
-    "oif err != nil {<CR>}<Esc>Olog.Fatalf(\"error: %s\\n\", err.Error())<Esc>jj"
+    "oif err != nil {<CR>}<Esc>Olog.Fatalf(\"error: %s\\n\", err.Error())<Esc>jj",
+    { desc = "Insert Go error handling with log.Fatalf" }
 )
 
 vim.keymap.set(
     "n",
     "<leader>el",
-    "oif err != nil {<CR>}<Esc>O.logger.Error(\"error\", \"error\", err)<Esc>F.;i"
+    "oif err != nil {<CR>}<Esc>O.logger.Error(\"error\", \"error\", err)<Esc>F.;i",
+    { desc = "Insert Go error handling with logger.Error" }
 )
 
 -- TODO: This is a primeagen special that i probably won't use, since now the
@@ -190,7 +195,7 @@ vim.keymap.set(
 -- Don't take it so seriously
 vim.keymap.set("n", "<leader>ca", function()
     require("cellular-automaton").start_animation("make_it_rain")
-end)
+end, { desc = "Angry-tableflip the buffer" })
 
 -- This remap provides a shorthand to the ':so' command, which sources the
 -- current file, effectively re-running it as a script. This can be useful for
@@ -198,4 +203,4 @@ end)
 -- having to manually reload Neovim or open a new terminal window.
 vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")
-end)
+end, { desc = "Source current file" })
