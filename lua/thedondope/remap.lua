@@ -151,7 +151,8 @@ vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz", { desc = "Previous location
 -- the entire file. After triggering the command, you'll be left in command-line
 -- mode with the cursor positioned to easily edit the replacement text,
 -- streamlining the process of performing such replacements.
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = "Search and replace word under cursor" })
+vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+    { desc = "Search and replace word under cursor" })
 
 -- Pressing <leader>x in normal mode will make the current file executable
 -- without leaving Neovim or opening a terminal window. This can be particularly
