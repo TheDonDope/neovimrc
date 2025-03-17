@@ -57,6 +57,10 @@ vim.keymap.set("n", "n", "nzzzv")
 -- adjusting your view or dealing with folds.
 vim.keymap.set("n", "N", "Nzzzv")
 
+vim.keymap.set("n", "=ap", "ma=ap'a")
+
+vim.keymap.set("n", "<leader>zig", "<cmd>LspRestart<cr>")
+
 -- vim.keymap.set("n", "<leader>vwm", function()
 --      require("vim-with-me").StartVimWithMe()
 --  end)
@@ -155,15 +159,38 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 -- A quick golang template to insert an error check
-vim.keymap.set("n", "<leader>ee", "oif err != nil {<CR>}<Esc>Oreturn err<Esc>")
+vim.keymap.set(
+    "n",
+    "<leader>ee",
+    "oif err != nil {<CR>}<Esc>Oreturn err<Esc>"
+)
+
+vim.keymap.set(
+    "n",
+    "<leader>ea",
+    "oassert.NoError(err, \"\")<Esc>F\";a"
+)
+
+vim.keymap.set(
+    "n",
+    "<leader>ef",
+    "oif err != nil {<CR>}<Esc>Olog.Fatalf(\"error: %s\\n\", err.Error())<Esc>jj"
+)
+
+vim.keymap.set(
+    "n",
+    "<leader>el",
+    "oif err != nil {<CR>}<Esc>O.logger.Error(\"error\", \"error\", err)<Esc>F.;i"
+)
 
 -- TODO: This is a primeagen special that i probably won't use, since now the
 -- whole lazy loading mechanism is in place
 --  vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.dotfiles/nvim/.config/nvim/lua/theprimeagen/packer.lua<CR>");
 
 -- Don't take it so seriously
-vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
-vim.keymap.set("n", "<leader>gl", "<cmd>CellularAutomaton game_of_life<CR>");
+vim.keymap.set("n", "<leader>ca", function()
+    require("cellular-automaton").start_animation("make_it_rain")
+end)
 
 -- This remap provides a shorthand to the ':so' command, which sources the
 -- current file, effectively re-running it as a script. This can be useful for

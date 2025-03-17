@@ -1,7 +1,7 @@
 require("thedondope.set")
 require("thedondope.remap")
-
 require("thedondope.lazy_init")
+
 -- DO.not
 -- DO NOT INCLUDE THIS
 
