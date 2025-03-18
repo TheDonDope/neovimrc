@@ -41,6 +41,9 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Scroll half-page down and cent
 -- located in the viewport.
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Scroll half-page down and center cursor" })
 
+-- Clear highlight of search on pressing <Esc> in normal mode
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
+
 -- This remap enhances the usability of the n command for navigating search
 -- results in normal mode. It ensures that when you jump to the next occurrence
 -- of your search term, the line with the match is centered on your screen,
