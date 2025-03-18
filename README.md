@@ -15,3 +15,8 @@ Inspiration taken from [ThePrimeagen/init.lua](https://github.com/ThePrimeagen/i
 ### Neovim Config - Part 3 -- LSP
 
 [![Neovim Config - Part 3 -- LSP](https://img.youtube.com/vi/MuUrCcvE-Yw/0.jpg)](https://www.youtube.com/watch?v=MuUrCcvE-Yw)
+
+### Teaching Neovim From Scratch To A Noob
+
+[![Teaching Neovim From Scratch To A Noob](https://img.youtube.com/vi/ybCiHPWKNA/0.jpg)](https://www.youtube.com/watch?v=-ybCiHPWKNA)
+
