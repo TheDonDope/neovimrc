@@ -49,8 +49,19 @@ autocmd({ "BufWritePre" }, {
 autocmd('LspAttach', {
     group = TheDonDopeGroup,
     callback = function(e)
-        vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end,
+        local builtin = require('telescope.builtin')
+        vim.keymap.set("n", "<leader>gd", builtin.lsp_definitions,
             { buffer = e.buf, desc = "LSP: Go to definition" })
+        vim.keymap.set("n", "<leader>gr", builtin.lsp_references,
+            { buffer = e.buf, desc = "LSP: Go to references" })
+        vim.keymap.set("n", "<leader>gI", builtin.lsp_implementations,
+            { buffer = e.buf, desc = "LSP: Go to implementations" })
+        vim.keymap.set("n", "<leader>D", builtin.lsp_type_definitions,
+            { buffer = e.buf, desc = "LSP: Go to type Definition" })
+        vim.keymap.set("n", "<leader>ds", builtin.lsp_document_symbols,
+            { buffer = e.buf, desc = "LSP: Document Symbols" })
+        vim.keymap.set("n", "<leader>ws", builtin.lsp_dynamic_workspace_symbols,
+            { buffer = e.buf, desc = "LSP: Workspace Symbols" })
         vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, { buffer = e.buf, desc = "LSP: Show documentation" })
         vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end,
             { buffer = e.buf, desc = "LSP: Search workspace symbols" })
@@ -58,8 +69,6 @@ autocmd('LspAttach', {
             { buffer = e.buf, desc = "Diagnostics: Open diagnostic float" })
         vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end,
             { buffer = e.buf, desc = "LSP: Code actions" })
-        vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end,
-            { buffer = e.buf, desc = "LSP: Find references" })
         vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end,
             { buffer = e.buf, desc = "LSP: Rename symbol" })
         vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end,

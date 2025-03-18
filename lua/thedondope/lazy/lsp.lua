@@ -2,21 +2,28 @@ return {
     "neovim/nvim-lspconfig",
     dependencies = {
         "stevearc/conform.nvim",
-        "williamboman/mason.nvim",
+        -- Automatically install LSPs and related tools to stdpath for Neovim
+        -- Mason must be loaded before its dependents so we need to set it up here.
+        -- NOTE: `opts = {}` is the same as calling `require('mason').setup({})`
+        { 'williamboman/mason.nvim', opts = {} },
         "williamboman/mason-lspconfig.nvim",
-        "hrsh7th/cmp-nvim-lsp",
+        'WhoIsSethDaniel/mason-tool-installer.nvim',
+        -- Useful status updates for LSP.
+        { 'j-hui/fidget.nvim',       opts = {} },
+        -- Allows extra capabilities provided by nvim-cmp
+        'hrsh7th/cmp-nvim-lsp',
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-path",
         "hrsh7th/cmp-cmdline",
         "hrsh7th/nvim-cmp",
         "L3MON4D3/LuaSnip",
         "saadparwaiz1/cmp_luasnip",
-        "j-hui/fidget.nvim",
     },
 
     config = function()
         require("conform").setup({
             formatters_by_ft = {
+                lua = { 'stylua' }
             }
         })
         local cmp = require('cmp')
@@ -27,8 +34,8 @@ return {
             vim.lsp.protocol.make_client_capabilities(),
             cmp_lsp.default_capabilities())
 
-        require("fidget").setup({})
-        require("mason").setup()
+        require('mason-tool-installer').setup(vim.tbl_keys({ ensure_installed = 'stylua' }))
+
         require("mason-lspconfig").setup({
             ensure_installed = {
                 "eslint",
