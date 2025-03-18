@@ -31,4 +31,6 @@ vim.opt.updatetime = 50
 vim.opt.colorcolumn = "80"
 
 -- To enable obsidian plugin markdown rendering features
-vim.opt.conceallevel = 1
+-- vim.opt.conceallevel = 1
+
+vim.opt.clipboard = 'unnamedplus'
