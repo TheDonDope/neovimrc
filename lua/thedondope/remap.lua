@@ -135,9 +135,8 @@ vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, { desc = "Format buffer wit
 -- compile errors or search results, with the added convenience of centering
 -- the screen on each item for better visibility. This can significantly speed
 -- up tasks such as debugging or reviewing search matches across a project.
--- Disabled due to conflicting keybinds with vim-tmux-navigator
--- vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz", { desc = "Next quickfix item and center screen" })
--- vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz", { desc = "Previous quickfix item and center screen" })
+vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz", { desc = "Next quickfix item and center screen" })
+vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz", { desc = "Previous quickfix item and center screen" })
 
 -- The practical effect of this remap is to facilitate efficient navigation
 -- through the items (such as errors, warnings, or search results) in the
@@ -191,10 +190,6 @@ vim.keymap.set(
     "oif err != nil {<CR>}<Esc>O.logger.Error(\"error\", \"error\", err)<Esc>F.;i",
     { desc = "Insert Go error handling with logger.Error" }
 )
-
--- TODO: This is a primeagen special that i probably won't use, since now the
--- whole lazy loading mechanism is in place
---  vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.dotfiles/nvim/.config/nvim/lua/theprimeagen/packer.lua<CR>");
 
 -- Don't take it so seriously
 vim.keymap.set("n", "<leader>ca", function()
