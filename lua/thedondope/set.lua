@@ -1,5 +1,5 @@
 -- Keep block as gui cursor in all modes
-vim.opt.guicursor = ''
+vim.opt.guicursor = ""
 
 -- Make line numbers default
 vim.opt.number = true
@@ -7,14 +7,14 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
-vim.opt.mouse = 'a'
+vim.opt.mouse = "a"
 
 -- Show the mode (Insert/Visual etc.)
 vim.opt.showmode = true
 
 -- Sync clipboard between OS and Neovim.
 --  See `:help 'clipboard'`
-vim.opt.clipboard = 'unnamedplus'
+vim.opt.clipboard = "unnamedplus"
 
 -- Configure indents
 vim.opt.breakindent = true
@@ -22,14 +22,14 @@ vim.opt.smartindent = true
 
 -- Save undo history
 vim.opt.undofile = true
-vim.opt.undodir = os.getenv('HOME') .. '/.vim/undodir'
+vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 
 -- Case-insensitive searching UNLESS \C or one or more capital letters in the search term
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 -- Keep signcolumn on by default
-vim.opt.signcolumn = 'yes'
+vim.opt.signcolumn = "yes"
 
 -- Decrease update time
 vim.opt.updatetime = 50
@@ -46,10 +46,10 @@ vim.opt.splitbelow = true
 --  See `:help 'list'`
 --  and `:help 'listchars'`
 vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
 
 -- Preview substitutions live, as you type!
-vim.opt.inccommand = 'split'
+vim.opt.inccommand = "split"
 
 -- Highlight the cursors current line
 vim.opt.cursorline = true
@@ -72,10 +72,10 @@ vim.opt.incsearch = true
 vim.opt.termguicolors = true
 
 -- Include file names in search which have an @ sign in their name
-vim.opt.isfname:append('@-@')
+vim.opt.isfname:append("@-@")
 
 -- Draw a optical vertical ruler at column 80
-vim.opt.colorcolumn = '80'
+vim.opt.colorcolumn = "80"
 
 -- To enable obsidian plugin markdown rendering features
 -- vim.opt.conceallevel = 1

@@ -14,70 +14,93 @@ require("thedondope.lazy_init")
 -- DO.not
 
 local augroup = vim.api.nvim_create_augroup
-local TheDonDopeGroup = augroup('TheDonDope', {})
+local TheDonDopeGroup = augroup("TheDonDope", {})
 
 local autocmd = vim.api.nvim_create_autocmd
-local yank_group = augroup('HighlightYank', {})
+local yank_group = augroup("HighlightYank", {})
 
 function R(name)
-    require("plenary.reload").reload_module(name)
+	require("plenary.reload").reload_module(name)
 end
 
 vim.filetype.add({
-    extension = {
-        templ = 'templ',
-    }
+	extension = {
+		templ = "templ",
+	},
 })
 
-autocmd('TextYankPost', {
-    group = yank_group,
-    pattern = '*',
-    callback = function()
-        vim.highlight.on_yank({
-            higroup = 'IncSearch',
-            timeout = 40,
-        })
-    end,
+autocmd("TextYankPost", {
+	group = yank_group,
+	pattern = "*",
+	callback = function()
+		vim.highlight.on_yank({
+			higroup = "IncSearch",
+			timeout = 40,
+		})
+	end,
 })
 
 autocmd({ "BufWritePre" }, {
-    group = TheDonDopeGroup,
-    pattern = "*",
-    command = [[%s/\s\+$//e]],
+	group = TheDonDopeGroup,
+	pattern = "*",
+	command = [[%s/\s\+$//e]],
 })
 
-autocmd('LspAttach', {
-    group = TheDonDopeGroup,
-    callback = function(e)
-        local builtin = require('telescope.builtin')
-        vim.keymap.set("n", "<leader>gd", builtin.lsp_definitions,
-            { buffer = e.buf, desc = "LSP: Go to definition" })
-        vim.keymap.set("n", "<leader>gr", builtin.lsp_references,
-            { buffer = e.buf, desc = "LSP: Go to references" })
-        vim.keymap.set("n", "<leader>gI", builtin.lsp_implementations,
-            { buffer = e.buf, desc = "LSP: Go to implementations" })
-        vim.keymap.set("n", "<leader>D", builtin.lsp_type_definitions,
-            { buffer = e.buf, desc = "LSP: Go to type Definition" })
-        vim.keymap.set("n", "<leader>ds", builtin.lsp_document_symbols,
-            { buffer = e.buf, desc = "LSP: Document Symbols" })
-        vim.keymap.set("n", "<leader>ws", builtin.lsp_dynamic_workspace_symbols,
-            { buffer = e.buf, desc = "LSP: Workspace Symbols" })
-        vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, { buffer = e.buf, desc = "LSP: Show documentation" })
-        vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end,
-            { buffer = e.buf, desc = "LSP: Search workspace symbols" })
-        vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end,
-            { buffer = e.buf, desc = "Diagnostics: Open diagnostic float" })
-        vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end,
-            { buffer = e.buf, desc = "LSP: Code actions" })
-        vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end,
-            { buffer = e.buf, desc = "LSP: Rename symbol" })
-        vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end,
-            { buffer = e.buf, desc = "LSP: Signature help" })
-        vim.keymap.set("n", "[d", function() vim.diagnostic.goto_next() end,
-            { buffer = e.buf, desc = "Diagnostics: Go to next item" })
-        vim.keymap.set("n", "]d", function() vim.diagnostic.goto_prev() end,
-            { buffer = e.buf, desc = "Diagnostics: Go to previous item" })
-    end
+autocmd("LspAttach", {
+	group = TheDonDopeGroup,
+	callback = function(e)
+		local builtin = require("telescope.builtin")
+		vim.keymap.set("n", "<leader>gd", builtin.lsp_definitions, { buffer = e.buf, desc = "LSP: Go to definition" })
+		vim.keymap.set("n", "<leader>gr", builtin.lsp_references, { buffer = e.buf, desc = "LSP: Go to references" })
+		vim.keymap.set(
+			"n",
+			"<leader>gI",
+			builtin.lsp_implementations,
+			{ buffer = e.buf, desc = "LSP: Go to implementations" }
+		)
+		vim.keymap.set(
+			"n",
+			"<leader>D",
+			builtin.lsp_type_definitions,
+			{ buffer = e.buf, desc = "LSP: Go to type Definition" }
+		)
+		vim.keymap.set(
+			"n",
+			"<leader>ds",
+			builtin.lsp_document_symbols,
+			{ buffer = e.buf, desc = "LSP: Document Symbols" }
+		)
+		vim.keymap.set(
+			"n",
+			"<leader>ws",
+			builtin.lsp_dynamic_workspace_symbols,
+			{ buffer = e.buf, desc = "LSP: Workspace Symbols" }
+		)
+		vim.keymap.set("n", "K", function()
+			vim.lsp.buf.hover()
+		end, { buffer = e.buf, desc = "LSP: Show documentation" })
+		vim.keymap.set("n", "<leader>vws", function()
+			vim.lsp.buf.workspace_symbol()
+		end, { buffer = e.buf, desc = "LSP: Search workspace symbols" })
+		vim.keymap.set("n", "<leader>vd", function()
+			vim.diagnostic.open_float()
+		end, { buffer = e.buf, desc = "Diagnostics: Open diagnostic float" })
+		vim.keymap.set("n", "<leader>vca", function()
+			vim.lsp.buf.code_action()
+		end, { buffer = e.buf, desc = "LSP: Code actions" })
+		vim.keymap.set("n", "<leader>vrn", function()
+			vim.lsp.buf.rename()
+		end, { buffer = e.buf, desc = "LSP: Rename symbol" })
+		vim.keymap.set("i", "<C-h>", function()
+			vim.lsp.buf.signature_help()
+		end, { buffer = e.buf, desc = "LSP: Signature help" })
+		vim.keymap.set("n", "[d", function()
+			vim.diagnostic.goto_next()
+		end, { buffer = e.buf, desc = "Diagnostics: Go to next item" })
+		vim.keymap.set("n", "]d", function()
+			vim.diagnostic.goto_prev()
+		end, { buffer = e.buf, desc = "Diagnostics: Go to previous item" })
+	end,
 })
 
 -- You can uncomment the following lines if you do not use nvim-tree and instead use netrw

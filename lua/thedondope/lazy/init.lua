@@ -1,14 +1,13 @@
 return {
 
-    {
-        'tpope/vim-sleuth'
-    },
+	{
+		"tpope/vim-sleuth",
+	},
 
+	{
+		"nvim-lua/plenary.nvim",
+		name = "plenary",
+	},
 
-    {
-        'nvim-lua/plenary.nvim',
-        name = 'plenary'
-    },
-
-    'eandrju/cellular-automaton.nvim',
+	"eandrju/cellular-automaton.nvim",
 }

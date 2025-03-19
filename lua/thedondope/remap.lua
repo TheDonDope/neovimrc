@@ -1,5 +1,4 @@
-vim.g.mapleader = " "
-vim.keymap.set('n', '<leader>pv', vim.cmd.Ex, { desc = "Open file explorer (netrw)" })
+vim.keymap.set("n", "<leader>pv", vim.cmd.Ex, { desc = "[P]roject [V]iew" })
 
 -- You may have stolen the following, but you will NOT use it, before you
 -- understand what it does!
@@ -41,9 +40,6 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Scroll half-page down and cent
 -- located in the viewport.
 vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Scroll half-page down and center cursor" })
 
--- Clear highlight of search on pressing <Esc> in normal mode
-vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
-
 -- This remap enhances the usability of the n command for navigating search
 -- results in normal mode. It ensures that when you jump to the next occurrence
 -- of your search term, the line with the match is centered on your screen,
@@ -62,7 +58,7 @@ vim.keymap.set("n", "N", "Nzzzv", { desc = "Repeat search backward and center cu
 
 vim.keymap.set("n", "=ap", "ma=ap'a", { desc = "Reindent paragraph and restore cursor position" })
 
-vim.keymap.set("n", "<leader>zig", "<cmd>LspRestart<cr>", { desc = "Restart LSP Servers" })
+vim.keymap.set("n", "<leader>zig", "<cmd>LspRestart<cr>", { desc = "LSP: Restart servers" })
 
 -- vim.keymap.set("n", "<leader>vwm", function()
 --      require("vim-with-me").StartVimWithMe()
@@ -114,9 +110,6 @@ vim.keymap.set("i", "<C-c>", "<Esc>")
 -- more predictably according to your expectations.
 vim.keymap.set("n", "Q", "<nop>")
 
--- TODO: This requires a custom script from theprimeagen (see https://github.com/ThePrimeagen/.dotfiles/blob/master/bin/.local/scripts/tmux-sessionizer)
---  vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
-
 -- The practical effect of this remap is to provide a quick and convenient way
 -- to format your code according to the standards and guidelines of the language
 -- server currently in use. It enhances code readability and consistency,
@@ -128,7 +121,7 @@ vim.keymap.set("n", "Q", "<nop>")
 -- Neovim's powerful LSP integration, which provides IDE-like functionalities
 -- such as diagnostics, code completion, and, as shown here, document
 -- formatting.
-vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, { desc = "Format buffer with LSP" })
+vim.keymap.set("n", "<leader>f", vim.lsp.buf.format, { desc = "LSP: Format buffer with LSP" })
 
 -- The practical effect of this remap is to improve navigation efficiency
 -- within the quickfix list, making it easier to cycle through items like
@@ -153,8 +146,12 @@ vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz", { desc = "Previous location
 -- the entire file. After triggering the command, you'll be left in command-line
 -- mode with the cursor positioned to easily edit the replacement text,
 -- streamlining the process of performing such replacements.
-vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
-    { desc = "Search and replace word under cursor" })
+vim.keymap.set(
+	"n",
+	"<leader>s",
+	[[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+	{ desc = "Search and replace word under cursor" }
+)
 
 -- Pressing <leader>x in normal mode will make the current file executable
 -- without leaving Neovim or opening a terminal window. This can be particularly
@@ -164,36 +161,36 @@ vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { desc = "Add executabl
 
 -- A quick golang template to insert an error check
 vim.keymap.set(
-    "n",
-    "<leader>ee",
-    "oif err != nil {<CR>}<Esc>Oreturn err<Esc>",
-    { desc = "Insert Go error handling block" }
+	"n",
+	"<leader>ee",
+	"oif err != nil {<CR>}<Esc>Oreturn err<Esc>",
+	{ desc = "Insert Go error handling block" }
 )
 
 vim.keymap.set(
-    "n",
-    "<leader>ea",
-    "oassert.NoError(err, \"\")<Esc>F\";a",
-    { desc = "Insert Go test assertion assert.NoError" }
+	"n",
+	"<leader>ea",
+	'oassert.NoError(err, "")<Esc>F";a',
+	{ desc = "Insert Go test assertion assert.NoError" }
 )
 
 vim.keymap.set(
-    "n",
-    "<leader>ef",
-    "oif err != nil {<CR>}<Esc>Olog.Fatalf(\"error: %s\\n\", err.Error())<Esc>jj",
-    { desc = "Insert Go error handling with log.Fatalf" }
+	"n",
+	"<leader>ef",
+	'oif err != nil {<CR>}<Esc>Olog.Fatalf("error: %s\\n", err.Error())<Esc>jj',
+	{ desc = "Insert Go error handling with log.Fatalf" }
 )
 
 vim.keymap.set(
-    "n",
-    "<leader>el",
-    "oif err != nil {<CR>}<Esc>O.logger.Error(\"error\", \"error\", err)<Esc>F.;i",
-    { desc = "Insert Go error handling with logger.Error" }
+	"n",
+	"<leader>el",
+	'oif err != nil {<CR>}<Esc>O.logger.Error("error", "error", err)<Esc>F.;i',
+	{ desc = "Insert Go error handling with logger.Error" }
 )
 
 -- Don't take it so seriously
 vim.keymap.set("n", "<leader>ca", function()
-    require("cellular-automaton").start_animation("make_it_rain")
+	require("cellular-automaton").start_animation("make_it_rain")
 end, { desc = "Angry-tableflip the buffer" })
 
 -- This remap provides a shorthand to the ':so' command, which sources the
@@ -201,5 +198,5 @@ end, { desc = "Angry-tableflip the buffer" })
 -- quickly applying changes to your configuration or other scripts without
 -- having to manually reload Neovim or open a new terminal window.
 vim.keymap.set("n", "<leader><leader>", function()
-    vim.cmd("so")
+	vim.cmd("so")
 end, { desc = "Source current file" })
